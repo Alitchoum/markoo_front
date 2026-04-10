@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "markooWaiting.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
