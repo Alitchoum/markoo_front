@@ -8,9 +8,7 @@
 import SwiftUI
 
 enum ButtonVariant{
-    case purple
-    case gray
-    case yellow
+    case purple, gray, yellow
     
     var backgroundColor: Color{
         switch self {
