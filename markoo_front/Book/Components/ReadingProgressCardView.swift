@@ -32,7 +32,7 @@ struct ReadingProgress: View {
                 Text("\(percentage)%")
                     .font(.custom("Parkinsans-SemiBold", size: 22))
             }
-            .padding(30)
+            .padding(32)
             .background(
                 Circle()
                     .stroke(.violetC, style: StrokeStyle(lineWidth: 8, lineCap: .round))

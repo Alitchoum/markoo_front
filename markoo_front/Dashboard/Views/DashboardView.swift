@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct DashboardView: View {
+    
     var body: some View {
         VStack {
-            Text("Dashboard view")
-                .font(.custom("Parkinsans-Medium", size: 22))
+            Text("Hello Prénom")
+                .font(.custom("Parkinsans-SemiBold", size: 22))
+            Text("Max streak : 0 jours")
+                .font(.custom("Parkinsans-Medium", size: 18))
+            Text("Lecture en cours")
+                .font(.custom("Parkinsans-Medium", size: 18))
         }
     }
 }
