@@ -5,7 +5,7 @@
 //  Created by alize suchon on 15/04/2026.
 //
 
-import SwiftUI
+import Foundation
 
 
 struct BookModel: Identifiable, Codable {

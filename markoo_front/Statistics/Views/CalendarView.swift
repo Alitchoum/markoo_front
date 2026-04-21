@@ -9,10 +9,15 @@ import SwiftUI
 
 struct CalendarView: View {
     var body: some View {
-        VStack {
-            Text("Calendar view")
-                .font(.custom("Parkinsans-Medium", size: 22))
+        ZStack {
+            Color.violetC
+            VStack {
+                Text("Calendar view")
+                    .font(.custom("Parkinsans-SemiBold", size: 22))
+                CalendarCardView()
+            }
         }
+        .ignoresSafeArea()
     }
 }
 
