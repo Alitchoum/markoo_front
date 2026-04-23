@@ -10,6 +10,7 @@ import SwiftUI
 struct AccountCardView: View {
     let picto : String
     let title : String
+    let action : () -> Void
     
     var body: some View {
         HStack{
@@ -22,17 +23,23 @@ struct AccountCardView: View {
                 .foregroundColor(.rouge)
                 .cornerRadius(15)
                 .padding(.trailing, 8)
-            
-            VStack (alignment: .leading){
-                Text(title)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.rouge)
+            Button{
+                action()
+            } label: {
+                VStack (alignment: .leading){
+                    Text(title)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.rouge)
+                }
             }
+            
             Spacer()
         }
     }
 }
 
 #Preview {
-    AccountCardView(picto: "close1", title: "Déconnexion")
+    AccountCardView(picto: "close1", title: "Déconnexion"){
+        print("action")
+    }
 }

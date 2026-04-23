@@ -11,8 +11,10 @@ struct UserInfosView: View {
     let picto: String
     let title: String
     let info : String
+    let action: () -> Void
     
     var body: some View {
+        
         VStack {
             HStack {
                 Image(picto)
@@ -31,16 +33,22 @@ struct UserInfosView: View {
                         .foregroundColor(.grisF)
                 }
                 Spacer()
-                Image("caret-right")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 25, height: 25)
-                    .foregroundColor(.grisF)
+                Button{
+                    action()
+                } label: {
+                    Image("caret-right")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(.grisF)
+                }
             }
         }
     }
 }
 
 #Preview {
-    UserInfosView(picto: "user-edit", title: "Prénom", info: "Emma")
+    UserInfosView(picto: "user-edit", title: "Prénom", info: "Emma"){
+        print("ok")
+    }
 }
