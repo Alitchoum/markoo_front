@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+
+# Xcode
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.xccheckout
+
+# Build
+build/
+*.build/
+*.app
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# CocoaPods
+Pods/
+
+# Swift Package Manager
+*.swiftpm/xcshared/
+*.xcodeproj/xcshared/
+
+# User-specific
+*.user
+!default.user
+
+# Environment (Sécurité)
+.env
+.env.local
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+*.swiftpm/config/registries.json
