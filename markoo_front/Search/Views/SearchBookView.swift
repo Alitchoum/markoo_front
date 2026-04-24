@@ -40,7 +40,7 @@ struct SearchBookView: View {
                         .font(Font.custom("Parkinsans-Medium", size: 16))
                         .foregroundColor(.white)
                 }
-                .frame(width: .infinity)
+                .frame(maxWidth: .infinity)
                 .padding(.vertical, 15)
                 .padding(.horizontal, 25)
                 .background(.violetF)

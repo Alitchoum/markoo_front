@@ -23,6 +23,8 @@ struct CardContainerView<Content : View>: View {
 
 #Preview {
     CardContainerView {
-          UserInfosView(picto: "user-edit", title: "Prénom", info: "Alice")
+        UserInfosView(picto: "user-edit", title: "Prénom", info: "Alice") {
+            print("ok")
+        }
       }
 }

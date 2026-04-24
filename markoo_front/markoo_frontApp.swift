@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct markoo_frontApp: App {
+    @State private var authService = AuthService()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(authService)
         }
     }
 }

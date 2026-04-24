@@ -9,9 +9,11 @@ import SwiftUI
 
 struct DashboardView: View {
     
+    @Environment(AuthService.self) private var authService
+
     var body: some View {
         VStack {
-            Text("Hello Prénom")
+            Text("Hello \(authService.user?.firstName ?? "you")")
                 .font(.custom("Parkinsans-SemiBold", size: 22))
             Text("Max streak : 0 jours")
                 .font(.custom("Parkinsans-Medium", size: 18))
@@ -22,5 +24,5 @@ struct DashboardView: View {
 }
 
 #Preview {
-    DashboardView()
+    DashboardView().environment(AuthService())
 }

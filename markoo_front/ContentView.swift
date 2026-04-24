@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(AuthService.self) private var authService
     var body: some View {
-        VStack {
-            Text("Content")
+            Group {
+                if authService.isLoggedIn {
+                    TabBarView()
+                } else {
+                    LoginView(authViewmodel: AuthViewModel(authService: authService))
+                }
+            }
         }
-        .padding()
     }
-}
 
 #Preview {
-    ContentView()
+    ContentView().environment(AuthService())
 }
