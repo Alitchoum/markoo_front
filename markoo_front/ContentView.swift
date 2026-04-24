@@ -12,14 +12,14 @@ struct ContentView: View {
     var body: some View {
             Group {
                 if authService.isLoggedIn {
-                    ProfileView()
+                    TabBarView()
                 } else {
-                    LoginView()
+                    LoginView(authViewmodel: AuthViewModel(authService: authService))
                 }
             }
         }
     }
 
 #Preview {
-    ContentView()
+    ContentView().environment(AuthService())
 }

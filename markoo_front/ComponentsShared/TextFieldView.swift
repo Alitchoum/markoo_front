@@ -24,7 +24,7 @@ struct TextFieldView: View {
             .background(backgroundColor)
             .cornerRadius(15)
             .disableAutocorrection(true)
-            .textInputAutocapitalization(.sentences)
+            .textInputAutocapitalization(.never)
             
             HStack {
                 Spacer()

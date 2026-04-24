@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct UpdateInfosView: View {
+    
     let label: String
     @State private var newInfo: String = ""
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack(spacing: 15){
@@ -24,11 +26,11 @@ struct UpdateInfosView: View {
             
             HStack {
                 CustomButton(title: "Annuler", variant: .gray){
-                    //action annuler
+                    dismiss()
                 }
                 
                 CustomButton(title: "valider", variant: .purple){
-                    //action valider - route upadte user
+                    //Action valider - route upadte user
                 }
             }
         }

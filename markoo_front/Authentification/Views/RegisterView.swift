@@ -9,11 +9,9 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @Environment(AuthService.self) private var authService
-    @State private var firstName: String = ""
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State var authViewmodel: AuthViewModel
     @State var showMPD: Bool = false
+    @Environment(\.dismiss) private var dismiss
     
     //TODO: AJOUTER LES MESSAGES D'ERREURS
     
@@ -22,21 +20,30 @@ struct RegisterView: View {
             Text("Register View")
                 .font(.custom("Parkinsans-SemiBold", size: 22))
             
-            TextFieldView(placeholder: "Prénom", text: $firstName, backgroundColor: .grisC)
+            TextFieldView(placeholder: "Prénom", text: $authViewmodel.firstName, backgroundColor: .grisC)
             
-            TextFieldView(placeholder: "Email", text: $email, backgroundColor: .grisC)
+            TextFieldView(placeholder: "Email", text: $authViewmodel.email, backgroundColor: .grisC)
             
-            TextFieldPasswordView(placeholder: "Mot de passe", text: $password, backgroundColor: .grisC)
+            TextFieldPasswordView(placeholder: "Mot de passe", text: $authViewmodel.password, backgroundColor: .grisC)
             
-            TextFieldPasswordView(placeholder: "Confirmation du Mot de passe", text: $password, backgroundColor: .grisC)
+            TextFieldPasswordView(placeholder: "Confirmation du Mot de passe", text: $authViewmodel.confirmPassword, backgroundColor: .grisC)
+            
+            //ERROR MESSAGE
+            if let errorMessage = authViewmodel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.rouge)
+                    .multilineTextAlignment(.center)
+            }
             
             CustomButton(title: "S'enregister", variant: .purple) {
-                authService.register(firstName: firstName, email: email, password: password)
+                authViewmodel.CheckRegisterInfos()
             }
             
             VStack(spacing: 5){
                 Text("Vous avez déjà un compte ?")
-                NavigationLink(destination: RegisterView()){
+                Button(action: {
+                        dismiss()
+                    }) {
                     Text("Connectez-vous")
                         .fontWeight(.semibold)
                         .foregroundColor(.black)
@@ -48,5 +55,9 @@ struct RegisterView: View {
 }
 
 #Preview {
-    RegisterView().environment(AuthService())
+    let previewService = AuthService()
+    let previewViewModel = AuthViewModel(authService: previewService)
+
+    RegisterView(authViewmodel: previewViewModel)
+        .environment(previewService)
 }

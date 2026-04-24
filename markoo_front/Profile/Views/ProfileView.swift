@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//TODO: LOGIQUE TOGGLE ACTION + UPDATE INFOS -> BACK-END
+
 struct ProfileView: View {
     
     @Environment(AuthService.self) private var authService
@@ -15,7 +17,7 @@ struct ProfileView: View {
     @State private var isNotificationOn: Bool = false
     
     var body: some View {
-       
+        
         VStack(alignment: .leading, spacing: 15) {
             Text("Mon compte")
                 .font(.custom("Parkinsans-SemiBold", size: 22))
@@ -63,15 +65,13 @@ struct ProfileView: View {
         .sheet(item: $activeSheet) { sheet in
             switch sheet {
             case .firstname, .email :
-                if sheet == .firstname {
-                    UpdateInfosView(label: sheet == .firstname ? "Prénom" : "Email")
-                       .presentationDetents([.height(350)])
-                        .presentationDragIndicator(.visible)
-                    //TODO: ARRANGER UN PEU LA TAILLE (ADAPTABLE)
-                }
+                
+                UpdateInfosView(label: sheet == .firstname ? "Prénom" : "Email")
+                    .presentationDetents([.fraction(0.4)]) //40% de l'espace total
+                
             case .password:
                 UpdatePasswordView()
-                    .presentationDetents([.height(550)])            
+                    .presentationDetents([.height(550)])
             }
         }
     }

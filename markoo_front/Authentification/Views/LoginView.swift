@@ -9,40 +9,54 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @Environment(AuthService.self) private var authService
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State var authViewmodel: AuthViewModel
     @State var showMPD: Bool = false
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20){
-                Text("Login View")
-                    .font(.custom("Parkinsans-SemiBold", size: 22))
+            ZStack {
+                Color.violetC
                 
-                TextFieldView(placeholder: "Email", text: $email, backgroundColor: .grisC)
+                VStack(spacing: 20){
+                    Text("Login View")
+                        .font(.custom("Parkinsans-SemiBold", size: 22))
                     
-                TextFieldPasswordView(placeholder: "Mot de passe", text: $password, backgroundColor: .grisC)
-                
-                CustomButton(title: "Se connecter", variant: .purple) {
-                    authService.login(email: email, password: password)
-                }
-                VStack(spacing: 5){
-                    Text("Vous n'avez pas de compte ?")
-                    NavigationLink(destination: RegisterView()){
-                        Text("Inscrivez-vous.")
-                            .fontWeight(.semibold)
-                            .foregroundColor(.black)
+                    TextFieldView(placeholder: "Email", text: $authViewmodel.email, backgroundColor: .grisC)
+                        
+                    TextFieldPasswordView(placeholder: "Mot de passe", text: $authViewmodel.password, backgroundColor: .grisC)
+                    
+                    //ERROR MESSAGE
+                    if let errorMessage = authViewmodel.errorMessage ?? authViewmodel.authService.loginError{
+                        Text(errorMessage)
+                            .foregroundColor(.rouge)
+                            .multilineTextAlignment(.center)
+                    }
+                    
+                    CustomButton(title: "Se connecter", variant: .purple) {
+                        authViewmodel.checkLoginIsValid()
+                    }
+                    
+                    VStack(spacing: 5){
+                        Text("Vous n'avez pas de compte ?")
+                        NavigationLink(destination: RegisterView(authViewmodel: AuthViewModel(authService: authViewmodel.authService))){
+                            Text("Inscrivez-vous.")
+                                .fontWeight(.semibold)
+                                .foregroundColor(.black)
+                        }
                     }
                 }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
+            .ignoresSafeArea()
         }
     }
 }
 
 
 #Preview {
-    LoginView()
-        .environment(AuthService())
+    let previewService = AuthService()
+    let previewViewModel = AuthViewModel(authService: previewService)
+
+    LoginView(authViewmodel: previewViewModel)
+        .environment(previewService)
 }

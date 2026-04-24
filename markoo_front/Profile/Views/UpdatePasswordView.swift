@@ -19,7 +19,7 @@ struct UpdatePasswordView: View {
             
             Text("Tu peux modifier ton mot de passe ici ")
                 .font(.custom("Parkinsans-Regular", size: 16))
-            Text("Mot de passe")
+            Text("Nouveau mot de passe")
                 .fontWeight(.medium)
             
             TextFieldPasswordView(placeholder: "Mot de passe", text: $password, backgroundColor: .violetC)
