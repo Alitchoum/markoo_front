@@ -12,3 +12,9 @@ enum SheetType : Identifiable {
     case firstname, email, password
     
 }
+
+struct UpdateProfil: Codable {
+    var firstName: String?
+    var email: String?
+    var password: String?
+}

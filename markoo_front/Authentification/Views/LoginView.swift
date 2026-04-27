@@ -39,7 +39,7 @@ struct LoginView: View {
                     VStack(spacing: 5){
                         Text("Vous n'avez pas de compte ?")
                         NavigationLink(destination: RegisterView(authViewmodel: AuthViewModel(authService: authViewmodel.authService))){
-                            Text("Inscrivez-vous.")
+                            Text("Inscrivez-vous")
                                 .fontWeight(.semibold)
                                 .foregroundColor(.black)
                         }

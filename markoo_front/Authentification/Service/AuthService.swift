@@ -16,7 +16,6 @@ class AuthService{
     var loginError: String?
     
     private let baseURL = "http://127.0.0.1:8080/auth"
-    private var cancellables = Set<AnyCancellable>()
         
     func register(firstName: String, email: String, password: String) async {
         let registerRequest = RegisterRequest(firstName: firstName, email: email, password: password)
@@ -40,7 +39,6 @@ class AuthService{
             
             guard (200...299).contains(httpResponse.statusCode) else {
                 await MainActor.run {
-                    // Vapor renvoie souvent 409 Conflict ou 400 Bad Request si l'email existe déjà
                     if httpResponse.statusCode == 409 || httpResponse.statusCode == 400 {
                         self.loginError = "Cet email est déjà utilisé."
                     } else {

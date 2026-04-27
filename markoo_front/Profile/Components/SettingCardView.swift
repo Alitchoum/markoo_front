@@ -11,6 +11,7 @@ struct SettingCardView: View {
     
     let picto: String
     let title: String
+    @Binding var isActive: Bool
     
     var body: some View {
         HStack{
@@ -28,12 +29,12 @@ struct SettingCardView: View {
                     .fontWeight(.semibold)
             }
             Spacer()
-            Toggle("", isOn: .constant(false))
+            Toggle("", isOn: $isActive)
                 .tint(.violetF)
         }
     }
 }
 
 #Preview {
-    SettingCardView(picto: "moon", title: "Mode sombre")
+    SettingCardView(picto: "moon", title: "Mode sombre", isActive: .constant(true))
 }
