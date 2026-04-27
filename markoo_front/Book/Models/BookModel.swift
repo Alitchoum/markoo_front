@@ -16,5 +16,4 @@ struct BookModel: Identifiable, Codable {
     var nbPages: Int
     var isbn: String
     var publicationYear: Int
-
 }

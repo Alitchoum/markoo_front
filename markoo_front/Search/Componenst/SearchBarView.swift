@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct SearchBarView: View {
+    
+    @Binding var text: String
+    var startSearch: () -> Void
+    
     var body: some View {
         HStack {
             Image("loupe")
-            Text("Rechercher")
+            TextField("Rechercher", text: $text, prompt: Text("Rechercher").foregroundColor(.white) )
+                .textInputAutocapitalization(.never)
+                .onSubmit {
+                    startSearch()
+                }
             Spacer()
         }
         .frame(maxWidth: .infinity)
@@ -19,10 +27,10 @@ struct SearchBarView: View {
         .background(.violetF)
         .foregroundColor(.white)
         .cornerRadius(20)
-       
     }
 }
 
 #Preview {
-    SearchBarView()
+   
+    SearchBarView(text: .constant("La fille"), startSearch: {})
 }
